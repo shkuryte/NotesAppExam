@@ -1,0 +1,61 @@
+﻿@page
+@model NotesApp2.Pages.Notes.IndexModel
+@{
+}
+
+<div class="container row">
+    <div class="col-8">    
+        <h1 class="display-6" style="color:#e63922; font-weight:bold">Mano užrašai</h1>    </div>
+    <div class="col-2">
+        <a asp-page="Create" class="btn btn-info" style="background-color:#bdbcb9; border-color:coral; font-weight:bold">Sukurti užrašą</a>
+       
+    </div>
+    <div class="col-2">
+        <a asp-page="CreateCategory" class="btn btn-info" style="background-color:#bdbcb9; border-color:coral; font-weight:bold">Sukurti kategoriją</a>
+    </div>
+</div>
+
+<div class="col-12 border p-2 mt-2">
+
+    <form method="post">
+            @if (Model.Notes.Count > 0)
+            {
+                <table class="table table-striped border-1">
+                    <tr class="table-secondary">
+                        <th>
+                            <label asp-for="Notes.FirstOrDefault().Title">Pavadinimas</label>
+                        </th>
+                        <th>
+                            <label asp-for="Notes.FirstOrDefault().Content">Turinys</label>
+                        </th>
+                        
+                        <th></th>
+                        
+
+                    </tr>
+                    @foreach (var note in Model.Notes)
+                    {
+                        <tr>
+                            <td>
+                                @note.Title
+                            </td>
+                            <td>
+                                @note.Content
+                            </td>
+                            
+                            <td>
+                                <a asp-page="Edit" asp-route-id="@note.Id" class="btn btn-success btn-sm" style="background-color:#e6c922; border-color:#c2b30e">Redaguoti</a>
+                                <a asp-page="Assign" asp-route-id="@note.Id" class="btn btn-success btn-sm" style="background-color:#1c7027">Priskirti kategorijai</a>
+                                <button asp-page-handler="Delete" asp-route-id="@note.Id" onclick="return confirm('Tikrai norite ištrinti?')" class="btn btn-danger btn-sm" style="background-color:#8a081e; border-color: #6e150e">Ištrinti</button>
+                            </td>
+                        </tr>
+                    }
+                </table>
+            }
+            else
+            {
+                <p>Užrašų nėra</p>
+            }
+        </form>
+
+</div>

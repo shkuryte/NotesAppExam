@@ -1,0 +1,69 @@
+﻿@page
+@model NotesApp2.Pages.Notes.CreateCategoryModel
+@{
+}
+
+<br />
+
+<h2>Kurti kategoriją</h2>
+
+<div class="border container" style="padding:30px">
+    <form method="post">
+        <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+        <div class="form-group row">
+            <div class="col-4">
+                <label asp-for="Category.Title">Pavadinimas</label>
+            </div>
+            <div class="col-4">
+                <input asp-for="Category.Title" class="form-control" />
+            </div>
+            <span asp-validation-for="Category.Title" class="text-danger"></span>
+
+        </div>
+        
+        
+        <div class="form-group row mt-4">
+            <div class="col-3 offset-4">
+                <input type="submit" value="Kurti" class="btn btn-primary" style="background-color:coral"/>
+            </div>
+            <div class="col-3">
+                <a asp-page="Index" class="btn btn-success">Atgal</a>
+            </div>
+        </div>
+    </form>
+</div>
+
+@*<div class="col-12 border p-2 mt-2">
+
+    
+                <table class="table table-striped border-1">
+                    <tr class="table-secondary">
+                        <th>
+                            <label asp-for="Categories.FirstOrDefault().Title">Pavadinimas</label>
+                        </th>
+                        
+
+                    </tr>
+                    @foreach (var category in Model.Categories)
+                    {
+                        <tr>
+                            <td>
+                                @category.Title
+                            </td>
+                            
+                            
+
+                            <td>
+                                <a asp-page="Edit" asp-route-id="@category.Id" class="btn btn-success btn-sm" style="background-color:#e6c922; border-color:#c2b30e">Redaguoti</a>
+                                <button asp-page-handler="Delete" asp-route-id="@category.Id" onclick="return confirm('Tikrai norite ištrinti?')" class="btn btn-danger btn-sm" style="background-color:#8a081e; border-color: #6e150e">Ištrinti</button>
+                            </td>
+                        </tr>
+                    }
+                </table>
+            
+
+</div>*@
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}
